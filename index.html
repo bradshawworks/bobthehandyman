@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bob The Handyman</title>
+    <meta name="description" content="Specialized roof refurbishment, asphalt seal coating, and crack filling in Port Charlotte, Florida. Call or text Bob today at 941-769-2755 for a free estimate.">
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Local Business Schema Markup for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "HomeAndConstructionBusiness",
+      "name": "Bob The Handyman",
+      "image": "",
+      "telephone": "941-769-2755",
+      "email": "thehandymanbob054@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Port Charlotte",
+        "addressRegion": "FL",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 26.9798,
+        "longitude": -82.1554
+      },
+      "url": "",
+      "priceRange": "$$"
+    }
+    </script>
+
+    <style>
+        /* Charcoal & Yellow Theme Variables */
+        :root {
+            --charcoal-dark: #0f172a;
+            --charcoal-main: #1e293b;
+            --charcoal-light: #334155;
+            --yellow-accent: #eab308;
+            --yellow-hover: #ca8a04;
+            --text-light: #f8f9fa;
+            --text-muted: #94a3b8;
+        }
+
+        /* Mobile-First Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.6;
+            color: #334155;
+            background-color: var(--text-light);
+        }
+        
+        /* Header - Professional Split Layout */
+        header {
+            background: var(--charcoal-dark);
+            color: #fff;
+            padding: 1rem 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--yellow-accent);
+        }
+        .header-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+        .logo span {
+            color: var(--yellow-accent);
+        }
+        .contact-btn-header {
+            background: var(--yellow-accent);
+            color: var(--charcoal-dark);
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+        .contact-btn-header:hover {
+            background: var(--yellow-hover);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.85)), url('https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=1200&q=80') center/cover;
+            color: white;
+            text-align: center;
+            padding: 4.5rem 1.5rem;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+            letter-spacing: -0.03em;
+        }
+        .hero h1 span {
+            color: var(--yellow-accent);
+        }
+        .hero p {
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: #cbd5e1;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            display: inline-block;
+            background: var(--yellow-accent);
+            color: var(--charcoal-dark);
+            padding: 0.85rem 1.75rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            transition: background 0.2s;
+        }
+        .cta-button:hover {
+            background: var(--yellow-hover);
+        }
+
+        /* Sections */
+        section {
+            padding: 3.5rem 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--charcoal-dark);
+            font-size: 1.85rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--yellow-accent);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        .service-card {
+            background: white;
+            padding: 2rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            border-top: 4px solid var(--charcoal-main);
+            border-left: 4px solid var(--yellow-accent);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .service-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+        }
+        .service-card h3 {
+            margin-bottom: 0.75rem;
+            color: var(--charcoal-main);
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+        }
+        .service-card p {
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        /* Showcase Section */
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        .showcase-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            border-bottom: 4px solid var(--yellow-accent);
+            transition: transform 0.2s;
+        }
+        .showcase-card:hover {
+            transform: translateY(-3px);
+        }
+        .showcase-img-container {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+        .showcase-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background-color: var(--charcoal-light);
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .showcase-img-container:hover .showcase-img {
+            transform: scale(1.03);
+        }
+        /* Zoom Overlay Icon on Hover */
+        .showcase-img-container::after {
+            content: '🔍 Click to Zoom';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(15, 23, 42, 0.8);
+            color: white;
+            padding: 0.25rem 0.6rem;
+            font-size: 0.75rem;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+        .showcase-img-container:hover::after {
+            opacity: 1;
+        }
+        .showcase-content {
+            padding: 1.5rem;
+        }
+        .showcase-content h3 {
+            color: var(--charcoal-main);
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .showcase-content p {
+            color: #475569;
+            font-size: 0.9rem;
+        }
+
+        /* Lightbox Modal Styles */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.9);
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+        }
+        .lightbox-modal.active {
+            display: flex;
+        }
+        .lightbox-content {
+            max-width: 900px;
+            max-height: 85vh;
+            width: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .lightbox-close:hover {
+            color: var(--yellow-accent);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--charcoal-main);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .about h2 {
+            color: white;
+        }
+        .about p {
+            color: #cbd5e1;
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            text-align: center;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            padding: 3rem 1.5rem;
+        }
+        .contact-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 1.5rem auto 0;
+        }
+        .contact-btn {
+            display: block;
+            background: var(--charcoal-main);
+            color: white;
+            padding: 0.9rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: background 0.2s;
+        }
+        .contact-btn:hover {
+            background: var(--charcoal-light);
+        }
+        .contact-btn.email-btn {
+            background: var(--yellow-accent);
+            color: var(--charcoal-dark);
+        }
+        .contact-btn.email-btn:hover {
+            background: var(--yellow-hover);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal-dark);
+            color: var(--text-muted);
+            text-align: center;
+            padding: 2rem 1rem;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--charcoal-light);
+        }
+        footer p + p {
+            margin-top: 0.5rem;
+        }
+
+        /* Desktop Media Query */
+        @media (min-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .service-card:nth-child(5) {
+                grid-column: 1 / -1;
+                max-width: 600px;
+                margin: 0 auto;
+                width: 100%;
+            }
+            .showcase-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .contact-options {
+                flex-direction: row;
+                justify-content: center;
+                max-width: 700px;
+            }
+            .contact-btn {
+                flex: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header with Left-Aligned Logo & Right-Aligned Contact Button -->
+    <header>
+        <div class="header-container">
+            <div class="logo">Bob <span>The Handyman</span></div>
+            <a href="#contact" class="contact-btn-header">Contact Now</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Expert Roof & Asphalt Services in <span>Port Charlotte, FL</span></h1>
+        <p>Protect your property with professional metal and rubber roof refurbishment, UV coatings, and durable asphalt maintenance.</p>
+        <a href="#contact" class="cta-button">Get a Free Estimate Today</a>
+    </section>
+
+    <!-- Services Section -->
+    <section>
+        <h2>Our Specialized Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Metal & Rubber Roof Refurbishment</h3>
+                <p>Extend the life of your commercial or residential roof. We restore worn-out metal and rubber surfaces to peak condition.</p>
+            </div>
+            <div class="service-card">
+                <h3>U/V Reflective Coating</h3>
+                <p>Lower cooling costs and protect your roof from harsh Florida sun damage with high-performance reflective coatings.</p>
+            </div>
+            <div class="service-card">
+                <h3>Asphalt Maintenance</h3>
+                <p>Comprehensive care to keep your driveways and parking surfaces looking sharp, safe, and structurally sound.</p>
+            </div>
+            <div class="service-card">
+                <h3>Asphalt Seal Coating</h3>
+                <p>Shield your asphalt from weathering, oxidation, and oil spills with a deep, protective seal coat finish.</p>
+            </div>
+            <div class="service-card">
+                <h3>Hot Rubber Crack Filling</h3>
+                <p>Prevent water penetration and weed growth by sealing cracks with industrial-grade hot rubber compound.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showcase Section -->
+    <section>
+        <h2>Recent Project Showcase</h2>
+        <div class="showcase-grid">
+            <!-- Project 1: Metal Roof Restoration (Accurate roofing/contractor work photo) -->
+            <div class="showcase-card">
+                <div class="showcase-img-container" onclick="openLightbox('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=600&q=80" alt="Metal Roof Restoration" class="showcase-img">
+                </div>
+                <div class="showcase-content">
+                    <h3>Metal Roof Restoration</h3>
+                    <p>Complete rust treatment, seam sealing, and protective elastomeric coating applied in Port Charlotte.</p>
+                </div>
+            </div>
+            <!-- Project 2: Commercial Seal Coating (Accurate blacktop / paving work photo) -->
+            <div class="showcase-card">
+                <div class="showcase-img-container" onclick="openLightbox('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Commercial Seal Coating" class="showcase-img">
+                </div>
+                <div class="showcase-content">
+                    <h3>Commercial Seal Coating</h3>
+                    <p>Deep blacktop seal coat application providing a fresh, rich finish and weather defense for a local parking lot.</p>
+                </div>
+            </div>
+            <!-- Project 3: Hot Rubber Crack Repair (Accurate road/pavement crack sealing photo) -->
+            <div class="showcase-card">
+                <div class="showcase-img-container" onclick="openLightbox('https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?auto=format&fit=crop&w=1200&q=80')">
+                    <img src="https://images.unsplash.com/photo-1517581177682-a085bb7ffb15?auto=format&fit=crop&w=600&q=80" alt="Hot Rubber Crack Filling" class="showcase-img">
+                </div>
+                <div class="showcase-content">
+                    <h3>Hot Rubber Crack Repair</h3>
+                    <p>Sealing expansion and weather cracks with industrial hot rubber compound to prevent root and water damage.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal Element -->
+    <div id="imageModal" class="lightbox-modal" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img class="lightbox-content" id="modalImg" alt="Enlarged Project View">
+    </div>
+
+    <!-- About Section -->
+    <section>
+        <div class="about">
+            <h2>Why Choose Bob?</h2>
+            <p>Proudly serving homeowners and businesses throughout Port Charlotte and surrounding areas. Bob is dedicated to high-grade local craftsmanship, honest pricing, and reliable service that keeps your property protected from top to bottom.</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact">
+            <h2>Ready to Protect Your Property?</h2>
+            <p>Reach out to Bob directly by phone, text message, or email to discuss your roofing or asphalt project and get your free quote.</p>
+            
+            <div class="contact-options">
+                <!-- Call Button -->
+                <a href="tel:9417692755" class="contact-btn">Call Bob</a>
+                
+                <!-- Text / SMS Button -->
+                <a href="sms:9417692755" class="contact-btn">Text Bob</a>
+                
+                <!-- Email Button -->
+                <a href="mailto:thehandymanbob054@gmail.com" class="contact-btn email-btn">Email Bob</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Bob The Handyman. Port Charlotte, FL. All rights reserved.</p>
+        <p>Site by BradshawWorks.com</p>
+    </footer>
+
+    <!-- Lightbox JavaScript Script -->
+    <script>
+        function openLightbox(imageUrl) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modalImg.src = imageUrl;
+            modal.classList.add('active');
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+        }
+    </script>
+
+</body>
+</html>
