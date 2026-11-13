@@ -427,6 +427,16 @@
         .contact-btn:hover {
             background: var(--charcoal-light);
         }
+        
+        /* Darkish Green Styling for Text Bob Button */
+        .contact-btn.text-btn {
+            background: #065f46;
+            color: white;
+        }
+        .contact-btn.text-btn:hover {
+            background: #047857;
+        }
+
         .contact-btn.email-btn {
             background: var(--yellow-accent);
             color: var(--charcoal-dark);
@@ -555,7 +565,6 @@
                 <!-- Slide 4: Hot Rubber Patch Video -->
                 <div class="carousel-slide">
                     <div class="showcase-img-container" onclick="openLightbox('media/asphalt.mp4')">
-                        <!-- Make sure to place a static preview thumbnail image in your media folder for the video card -->
                         <img src="media/asphalt-thumb.jpg" alt="Asphalt Hot Rubber Patching Video" class="showcase-img">
                     </div>
                     <div class="showcase-content">
@@ -606,8 +615,8 @@
                 <!-- Call Button -->
                 <a href="tel:9417692755" class="contact-btn">Call Bob</a>
                 
-                <!-- Text / SMS Button -->
-                <a href="sms:9417692755" class="contact-btn">Text Bob</a>
+                <!-- Text / SMS Button with Dark Green Styling -->
+                <a href="sms:9417692755" class="contact-btn text-btn">Text Bob</a>
                 
                 <!-- Email Button -->
                 <a href="mailto:thehandymanbob054@gmail.com" class="contact-btn email-btn">Email Bob</a>
