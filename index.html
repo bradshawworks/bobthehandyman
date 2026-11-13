@@ -63,7 +63,15 @@
             -moz-osx-font-smoothing: grayscale;
             line-height: 1.6;
             color: #334155;
-            background-color: var(--text-light);
+            
+            /* =========================================================================
+               BACKGROUND IMAGE WITH WHITE OVERLAY
+               Plug in your GitHub repo path below (e.g., 'assets/images/bg.jpg').
+               The '0.9' controls the opacity of the white overlay (0.0 to 1.0).
+               ========================================================================= */
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('.\media\bg.jpg') no-repeat center center fixed;
+            background-size: cover;
         }
         
         /* Header - Professional Split Layout */
@@ -205,49 +213,58 @@
             font-size: 0.95rem;
         }
 
-        /* Showcase Section */
-        .showcase-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-        }
-        .showcase-card {
+        /* Single-Pane Project Showcase Carousel */
+        .showcase-carousel-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
             background: white;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.04);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
             border-bottom: 4px solid var(--yellow-accent);
-            transition: transform 0.2s;
         }
-        .showcase-card:hover {
-            transform: translateY(-3px);
+        .carousel-track {
+            position: relative;
+            width: 100%;
+        }
+        .carousel-slide {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        .carousel-slide.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0.4; }
+            to { opacity: 1; }
         }
         .showcase-img-container {
             position: relative;
             cursor: pointer;
             overflow: hidden;
+            background-color: var(--charcoal-light);
         }
         .showcase-img {
             width: 100%;
-            height: 200px;
+            height: 340px;
             object-fit: cover;
-            background-color: var(--charcoal-light);
             display: block;
             transition: transform 0.3s ease;
         }
         .showcase-img-container:hover .showcase-img {
-            transform: scale(1.03);
+            transform: scale(1.02);
         }
         /* Zoom Overlay Icon on Hover */
         .showcase-img-container::after {
             content: '🔍 Click to Zoom';
             position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(15, 23, 42, 0.8);
+            bottom: 12px;
+            right: 12px;
+            background: rgba(15, 23, 42, 0.85);
             color: white;
-            padding: 0.25rem 0.6rem;
-            font-size: 0.75rem;
+            padding: 0.3rem 0.7rem;
+            font-size: 0.8rem;
             border-radius: 4px;
             opacity: 0;
             transition: opacity 0.2s;
@@ -256,17 +273,72 @@
             opacity: 1;
         }
         .showcase-content {
-            padding: 1.5rem;
+            padding: 2rem;
+            text-align: center;
         }
         .showcase-content h3 {
             color: var(--charcoal-main);
-            font-size: 1.15rem;
-            font-weight: 600;
+            font-size: 1.35rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
         }
         .showcase-content p {
             color: #475569;
-            font-size: 0.9rem;
+            font-size: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Carousel Navigation Buttons */
+        .carousel-btn {
+            position: absolute;
+            top: 45%;
+            transform: translateY(-50%);
+            background: rgba(15, 23, 42, 0.75);
+            color: white;
+            border: none;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s, transform 0.2s;
+            z-index: 10;
+        }
+        .carousel-btn:hover {
+            background: var(--yellow-accent);
+            color: var(--charcoal-dark);
+            transform: translateY(-50%) scale(1.05);
+        }
+        .carousel-btn.prev {
+            left: 15px;
+        }
+        .carousel-btn.next {
+            right: 15px;
+        }
+
+        /* Carousel Dots Pagination */
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 1rem 0 1.5rem 0;
+            background: white;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .dot.active, .dot:hover {
+            background: var(--yellow-accent);
+            transform: scale(1.15);
         }
 
         /* Lightbox Modal Styles */
@@ -393,9 +465,6 @@
                 margin: 0 auto;
                 width: 100%;
             }
-            .showcase-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
             .contact-options {
                 flex-direction: row;
                 justify-content: center;
@@ -451,46 +520,59 @@
         </div>
     </section>
 
-    <!-- Showcase Section -->
+    <!-- Single-Pane Showcase Carousel Section -->
     <section>
         <h2>Recent Project Showcase</h2>
-        <div class="showcase-grid">
-            <!-- Project 1: Metal Roof Restoration (Coating/Painting application) -->
-            <div class="showcase-card">
-                <div class="showcase-img-container" onclick="openLightbox('https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcQrmTEuhRctZfqIRllRaI4ktm-GnpQKuU0aepW9Gj-oUyZFa0TGwAiBK8hfLYY26j2BucB4DKJPcvUcroo')">
-                    <img src="https://encrypted-tbn3.gstatic.com/licensed-image?q=tbn:ANd9GcQrmTEuhRctZfqIRllRaI4ktm-GnpQKuU0aepW9Gj-oUyZFa0TGwAiBK8hfLYY26j2BucB4DKJPcvUcroo" alt="Metal Roof Restoration" class="showcase-img">
+        <div class="showcase-carousel-container" id="projectCarousel">
+            <div class="carousel-track">
+                <!-- Slide 1: Metal Roof Restoration -->
+                <div class="carousel-slide active">
+                    <div class="showcase-img-container" onclick="openLightbox('.media\houseba.jpeg')">
+                        <img src=".\media\houseba.jpeg" alt="Metal Roof Restoration" class="showcase-img">
+                    </div>
+                    <div class="showcase-content">
+                        <h3>Metal Roof Restoration</h3>
+                        <p>Before & after of a UV-protection coating on a shop.</p>
+                    </div>
                 </div>
-                <div class="showcase-content">
-                    <h3>Metal Roof Restoration</h3>
-                    <p>Complete rust treatment, seam sealing, and protective elastomeric coating applied in Port Charlotte.</p>
+                <!-- Slide 2: Commercial Seal Coating -->
+                <div class="carousel-slide">
+                    <div class="showcase-img-container" onclick="openLightbox('.media\cabinba.jpeg')">
+                        <img src=".media\cabinba.jpeg" alt="Metal Roof Restoration" class="showcase-img">
+                    </div>
+                    <div class="showcase-content">
+                        <h3>Metal Roof Restoration</h3>
+                        <p>Before & after of a complete cabin roof UV coating.</p>
+                    </div>
+                </div>
+                <!-- Slide 3: Hot Rubber Crack Repair -->
+                <div class="carousel-slide">
+                    <div class="showcase-img-container" onclick="openLightbox('.media\driveba.jpeg')">
+                        <img src=".media\driveba.jpeg" alt="Asphalt Maintenance" class="showcase-img">
+                    </div>
+                    <div class="showcase-content">
+                        <h3>Asphalt Maintenance</h3>
+                        <p>Full driveway rubber patch and seal coating.</p>
+                    </div>
                 </div>
             </div>
-            <!-- Project 2: Commercial Seal Coating (Sealant application on blacktop) -->
-            <div class="showcase-card">
-                <div class="showcase-img-container" onclick="openLightbox('https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRmsaquD2yZJdull8oCEVLdOD0ZFbvAU2gLa6d1DTfCOCyTsurvacZqjkgOdZBeK1-aa7Vcfyt69FKHSAQ')">
-                    <img src="https://encrypted-tbn1.gstatic.com/licensed-image?q=tbn:ANd9GcRmsaquD2yZJdull8oCEVLdOD0ZFbvAU2gLa6d1DTfCOCyTsurvacZqjkgOdZBeK1-aa7Vcfyt69FKHSAQ" alt="Commercial Seal Coating" class="showcase-img">
-                </div>
-                <div class="showcase-content">
-                    <h3>Commercial Seal Coating</h3>
-                    <p>Deep blacktop seal coat application providing a fresh, rich finish and weather defense for a local parking lot.</p>
-                </div>
-            </div>
-            <!-- Project 3: Hot Rubber Crack Repair (Asphalt crack filling work) -->
-            <div class="showcase-card">
-                <div class="showcase-img-container" onclick="openLightbox('https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQDgpiLhF9nxZk2X0ee9d9yPgQpeYroz1F4lanqXmBUx7nohdxMGOgpEKwcxTeEAh5tHiJ5aMVhtL0UsU0')">
-                    <img src="https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcQDgpiLhF9nxZk2X0ee9d9yPgQpeYroz1F4lanqXmBUx7nohdxMGOgpEKwcxTeEAh5tHiJ5aMVhtL0UsU0" alt="Hot Rubber Crack Filling" class="showcase-img">
-                </div>
-                <div class="showcase-content">
-                    <h3>Hot Rubber Crack Repair</h3>
-                    <p>Sealing expansion and weather cracks with industrial hot rubber compound to prevent root and water damage.</p>
-                </div>
+
+            <!-- Previous & Next Navigation Arrows -->
+            <button class="carousel-btn prev" onclick="changeSlide(-1)">❮</button>
+            <button class="carousel-btn next" onclick="changeSlide(1)">❯</button>
+
+            <!-- Dots Pagination -->
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
             </div>
         </div>
     </section>
 
     <!-- Lightbox Modal Element -->
     <div id="imageModal" class="lightbox-modal" onclick="closeLightbox()">
-        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-close" onclick="closeLightbox()">×</button>
         <img class="lightbox-content" id="modalImg" alt="Enlarged Project View">
     </div>
 
@@ -523,12 +605,13 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Bob The Handyman. Port Charlotte, FL. All rights reserved.</p>
+        <p>© 2026 Bob The Handyman. Port Charlotte, FL. All rights reserved.</p>
         <p>Site by BradshawWorks.com</p>
     </footer>
 
-    <!-- Lightbox JavaScript Script -->
+    <!-- JavaScript for Lightbox & Single-Pane Carousel (with swipe support) -->
     <script>
+        // Lightbox Functions
         function openLightbox(imageUrl) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImg');
@@ -539,6 +622,60 @@
         function closeLightbox() {
             const modal = document.getElementById('imageModal');
             modal.classList.remove('active');
+        }
+
+        // Single-Pane Carousel Logic
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function changeSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            let slides = document.getElementsByClassName("carousel-slide");
+            let dots = document.getElementsByClassName("dot");
+            
+            if (n > slides.length) { slideIndex = 1; }
+            if (n < 1) { slideIndex = slides.length; }
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].classList.remove("active");
+            }
+            
+            slides[slideIndex - 1].classList.add("active");
+            dots[slideIndex - 1].classList.add("active");
+        }
+
+        // Touch/Swipe Support for Mobile Devices
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        const carouselElement = document.getElementById('projectCarousel');
+
+        carouselElement.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        carouselElement.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                changeSlide(1); // Swipe Left -> Next Slide
+            }
+            if (touchEndX > touchStartX + 50) {
+                changeSlide(-1); // Swipe Right -> Previous Slide
+            }
         }
     </script>
 
