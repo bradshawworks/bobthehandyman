@@ -64,12 +64,8 @@
             line-height: 1.6;
             color: #334155;
             
-            /* =========================================================================
-               BACKGROUND IMAGE WITH WHITE OVERLAY
-               Plug in your GitHub repo path below (e.g., 'assets/images/bg.jpg').
-               The '0.9' controls the opacity of the white overlay (0.0 to 1.0).
-               ========================================================================= */
-            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+            /* Background image with white overlay tint */
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
                         url('media/bg.jpg') no-repeat center center fixed;
             background-size: cover;
         }
@@ -255,9 +251,9 @@
         .showcase-img-container:hover .showcase-img {
             transform: scale(1.02);
         }
-        /* Zoom Overlay Icon on Hover */
+        /* Zoom / Play Overlay Icon on Hover */
         .showcase-img-container::after {
-            content: '🔍 Click to Zoom';
+            content: '🔍 Click to View';
             position: absolute;
             bottom: 12px;
             right: 12px;
@@ -376,6 +372,7 @@
             cursor: pointer;
             background: none;
             border: none;
+            z-index: 2010;
         }
         .lightbox-close:hover {
             color: var(--yellow-accent);
@@ -525,27 +522,36 @@
         <h2>Recent Project Showcase</h2>
         <div class="showcase-carousel-container" id="projectCarousel">
             <div class="carousel-track">
-                <!-- Slide 1: Metal Roof Restoration -->
+                <!-- Slide 1: Metal Roof Restoration (House) -->
                 <div class="carousel-slide active">
                     <div class="showcase-img-container" onclick="openLightbox('media/houseba.jpeg')">
-                        <img src="media/houseba.jpeg" alt="Metal Roof Restoration" class="showcase-img">
+                        <img src="media/house2.jpg" alt="Metal Roof Restoration" class="showcase-img">
                     </div>
                     <div class="showcase-content">
                         <h3>Metal Roof Restoration</h3>
                         <p>Before & after of a UV-protection coating on a shop.</p>
                     </div>
                 </div>
-                <!-- Slide 2: Commercial Seal Coating -->
+                <!-- Slide 2: Asphalt Maintenance (Driveway) -->
+                <div class="carousel-slide">
+                    <div class="showcase-img-container" onclick="openLightbox('media/driveba.jpeg')">
+                        <img src="media/drive2.jpg" alt="Asphalt Maintenance" class="showcase-img">
+                    </div>
+                    <div class="showcase-content">
+                        <h3>Asphalt Maintenance</h3>
+                        <p>Full driveway rubber patch and seal coating.</p>
+                    </div>
+                </div>
                 <div class="carousel-slide">
                     <div class="showcase-img-container" onclick="openLightbox('media/cabinba.jpeg')">
-                        <img src="media/cabinba.jpeg" alt="Metal Roof Restoration" class="showcase-img">
+                        <img src="media/cabin2.jpg" alt="Metal Roof Restoration" class="showcase-img">
                     </div>
                     <div class="showcase-content">
                         <h3>Metal Roof Restoration</h3>
                         <p>Before & after of a complete cabin roof UV coating.</p>
                     </div>
                 </div>
-                <!-- Slide 3: Hot Rubber Crack Repair -->
+                <!-- Slide 3: Metal Roof Restoration (Cabin) -->
                 <div class="carousel-slide">
                     <div class="showcase-img-container" onclick="openLightbox('media/driveba.jpeg')">
                         <img src="media/driveba.jpeg" alt="Asphalt Maintenance" class="showcase-img">
@@ -555,25 +561,40 @@
                         <p>Full driveway rubber patch and seal coating.</p>
                     </div>
                 </div>
+                <!-- Slide 4: Hot Rubber Patch Video -->
+                <div class="carousel-slide">
+                    <div class="showcase-img-container" onclick="openLightbox('media/asphalt.mp4')">
+                        <!-- Make sure to place a static preview thumbnail image in your media folder for the video card -->
+                        <img src="media/asphalt-thumb.jpg" alt="Asphalt Hot Rubber Patching Video" class="showcase-img">
+                    </div>
+                    <div class="showcase-content">
+                        <h3>Asphalt Hot Rubber Patching</h3>
+                        <p>Our process for performing the hot rubber patching.</p>
+                    </div>
+                </div>
             </div>
 
             <!-- Previous & Next Navigation Arrows -->
             <button class="carousel-btn prev" onclick="changeSlide(-1)">❮</button>
             <button class="carousel-btn next" onclick="changeSlide(1)">❯</button>
 
-            <!-- Dots Pagination -->
+            <!-- Dots Pagination (Expanded to 4) -->
             <div class="carousel-dots">
                 <span class="dot active" onclick="currentSlide(1)"></span>
                 <span class="dot" onclick="currentSlide(2)"></span>
                 <span class="dot" onclick="currentSlide(3)"></span>
+                <span class="dot" onclick="currentSlide(4)"></span>
             </div>
         </div>
     </section>
 
-    <!-- Lightbox Modal Element -->
+    <!-- Upgraded Lightbox Modal Element (Supports both Image & Video) -->
     <div id="imageModal" class="lightbox-modal" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()">×</button>
-        <img class="lightbox-content" id="modalImg" alt="Enlarged Project View">
+        <div onclick="event.stopPropagation()">
+            <img class="lightbox-content" id="modalImg" alt="Enlarged Project View" style="display: none;">
+            <video class="lightbox-content" id="modalVideo" controls style="display: none;"></video>
+        </div>
     </div>
 
     <!-- About Section -->
@@ -605,22 +626,39 @@
 
     <!-- Footer -->
     <footer>
-        <p>© 2026 Bob The Handyman. Port Charlotte, FL. All rights reserved.</p>
+        <p>&copy; 2026 Bob The Handyman. Port Charlotte, FL. All rights reserved.</p>
         <p>Site by BradshawWorks.com</p>
     </footer>
 
-    <!-- JavaScript for Lightbox & Single-Pane Carousel (with swipe support) -->
+    <!-- JavaScript for Lightbox (Image & Video Support) & Single-Pane Carousel -->
     <script>
-        // Lightbox Functions
-        function openLightbox(imageUrl) {
+        // Lightbox Functions with MP4 Video Support
+        function openLightbox(mediaUrl) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImg');
-            modalImg.src = imageUrl;
+            const modalVideo = document.getElementById('modalVideo');
+
+            if (mediaUrl.endsWith('.mp4')) {
+                modalImg.style.display = 'none';
+                modalVideo.style.display = 'block';
+                modalVideo.src = mediaUrl;
+                modalVideo.play();
+            } else {
+                modalVideo.style.display = 'none';
+                modalImg.style.display = 'block';
+                modalImg.src = mediaUrl;
+            }
+
             modal.classList.add('active');
         }
 
         function closeLightbox() {
             const modal = document.getElementById('imageModal');
+            const modalVideo = document.getElementById('modalVideo');
+
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+
             modal.classList.remove('active');
         }
 
